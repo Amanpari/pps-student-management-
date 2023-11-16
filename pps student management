@@ -1,0 +1,27 @@
+#include<math.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int i=0;
+struct sinof{
+char firstname[60];
+char lastname[60];
+float cgpa;
+int rollno;
+int courseid[10];}
+st[55];
+void add_student(){
+printf("add the student details\n");
+printf("\n");
+printf("enter the first name of student\n");
+scanf("%s",st[i].firstname);
+printf("enter the last name of the student\n");
+scanf("%s",st[i].lastname);
+printf("enter the roll number\n");
+scanf("%d",&st[i].rollno);
+printf("enter the cgpa you obtained\n");
+scanf("%f",&st[i].cgpa);
+printf("enter the course id for 5 subjects\n");
+for(int j=0;j<5;j++){
+scanf("%d",&st[i].courseid[j]);}
+
