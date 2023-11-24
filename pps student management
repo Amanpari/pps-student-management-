@@ -24,4 +24,53 @@ scanf("%f",&st[i].cgpa);
 printf("enter the course id for 5 subjects\n");
 for(int j=0;j<5;j++){
 scanf("%d",&st[i].courseid[j]);}
-
+//by roll no.24/11/23
+void find_rollnum()
+{
+int r;
+printf("enter the roll number of the student");
+scanf("%d",&r);
+int j;
+int x;
+for (j=1;j<=i;j++){
+    if(x==st[i].rollno){
+printf("the student details are\n");
+printf("the first name is %s\n",st[i].firstname);
+printf("the last name is %s\n",st[i].lastname);
+printf("the cgpa is %f\n",st[i].cgpa);
+printf("enter the course id");}
+for(int j=0;j<5;j++){
+printf("the course id are %d\n",st[i].courseid[j]);
+}
+break;
+}
+}
+//by first name
+void find_fname()
+{
+char a[60];
+printf("enter the first name\n");
+scanf("%s",a);
+int f=0;
+for(int j=1;j<=i;j++){
+if(!strcmp(st[j].firstname,a)){
+printf("the student details are\n");
+printf("the first name is %s\n",st[i].firstname);
+printf("the last name is %s\n",st[i].lastname);
+printf(" the roll number is %d\n",st[i].rollno);
+printf("the cgpa is %f\n",st[i].cgpa);
+printf("enter the course id\n");
+for(int j=0;j<5;j++){
+printf("the course ids are %d\n",st[i].courseid[j]);
+}
+f=1;
+}
+else
+printf("the first name not found\n");
+}
+}
+//total number of students
+void total_s()
+{
+printf("the total number of students is %d\n",i);
+}
