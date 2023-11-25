@@ -4,15 +4,16 @@
 #include<string.h>
 int i=0;
 struct sinof{
-char firstname[60];
-char lastname[60];
+char firstname[50];
+char lastname[50];
 float cgpa;
 int rollno;
-int courseid[10];}
-st[55];
-void add_student(){
+int courseid[10];
+}st[55];
+void add_student()
+{
 printf("add the student details\n");
-printf("\n");
+printf("------------------------\n");
 printf("enter the first name of student\n");
 scanf("%s",st[i].firstname);
 printf("enter the last name of the student\n");
@@ -23,7 +24,10 @@ printf("enter the cgpa you obtained\n");
 scanf("%f",&st[i].cgpa);
 printf("enter the course id for 5 subjects\n");
 for(int j=0;j<5;j++){
-scanf("%d",&st[i].courseid[j]);}
+scanf("%d",&st[i].courseid[j]);
+}
+i=i+1;
+}
 //by roll no.24/11/23
 void find_rollnum()
 {
@@ -31,19 +35,22 @@ int r;
 printf("enter the roll number of the student");
 scanf("%d",&r);
 int j;
-int x;
-for (j=1;j<=i;j++){
-    if(x==st[i].rollno){
+for (j=0;j<i;j++){
+    if(r==st[j].rollno){
 printf("the student details are\n");
-printf("the first name is %s\n",st[i].firstname);
-printf("the last name is %s\n",st[i].lastname);
-printf("the cgpa is %f\n",st[i].cgpa);
-printf("enter the course id");}
-for(int j=0;j<5;j++){
-printf("the course id are %d\n",st[i].courseid[j]);
+printf("the first name is %s\n",st[j].firstname);
+printf("the last name is %s\n",st[j].lastname);
+printf("the cgpa is %f\n",st[j].cgpa);
+for(int k=0;k<5;k++){
+printf("the course ids are %d\n",st[j].courseid[k]);
 }
 break;
 }
+}
+if (j == i) 
+    {
+        printf("Student with roll number %d not found\n", r);
+    }
 }
 //by first name
 void find_fname()
@@ -52,25 +59,147 @@ char a[60];
 printf("enter the first name\n");
 scanf("%s",a);
 int f=0;
-for(int j=1;j<=i;j++){
+for(int j=0;j<i;j++){
 if(!strcmp(st[j].firstname,a)){
 printf("the student details are\n");
-printf("the first name is %s\n",st[i].firstname);
-printf("the last name is %s\n",st[i].lastname);
-printf(" the roll number is %d\n",st[i].rollno);
-printf("the cgpa is %f\n",st[i].cgpa);
+printf("the first name is %s\n",st[j].firstname);
+printf("the last name is %s\n",st[j].lastname);
+printf(" the roll number is %d\n",st[j].rollno);
+printf("the cgpa is %f\n",st[j].cgpa);
 printf("enter the course id\n");
-for(int j=0;j<5;j++){
-printf("the course ids are %d\n",st[i].courseid[j]);
+for(int k=0;k<5;k++){
+printf("the course ids are %d\n",st[j].courseid[k]);
 }
 f=1;
-}
-else
-printf("the first name not found\n");
+break;
 }
 }
+if (f == 0)
+        printf("the first name not found\n");
+}
+//enrolled in a course
+void find_course()
+{
+int courseids;
+printf("enter the course ids\n");
+scanf("%d",&courseids);
+int c=0;
+for(int j=0;j<i;j++){
+for(int d=0;d<5;d++){
+if(courseids==st[j].courseid[d]){
+printf("the student details are\n");
+printf("the first name is %s\n",st[j].firstname);
+printf("the last name is %s\n",st[j].lastname);
+printf("the roll number is %d\n",st[j].rollno);
+printf("the cgpa is %f\n",st[j].cgpa);
+c=1;
+break;
+}
+}
+}
+ if (c == 0)
+        printf("the course id not found\n");
+}
+
 //total number of students
 void total_s()
 {
 printf("the total number of students is %d\n",i);
+}
+//to delete a student
+void delete_s()
+{
+int a;
+printf("enter the roll no. to delete\n");
+scanf("%d",&a);
+for(int j=1;j<=i;j++){
+if(a==st[j].rollno){
+for(int k=j;k<49;k++)
+st[k]=st[k+1];
+i--;
+}
+}
+printf("the roll number is removed successfully\n");
+}
+//to update data
+void update_s()
+{
+printf("enter the roll number to update:");
+long int x;
+scanf("%ld",&x);
+for(int j=0;j<i;j++){
+if(st[j].rollno==x){
+printf("1. first name\n"
+"2.last name\n"
+"3. roll no.\n"
+"4. cgpa\n"
+"5. course ids\n");
+int z;
+scanf("%d",&z);
+switch(z){
+case 1:
+printf("enter the new first name:\n");
+scanf("%s",st[j].firstname);
+break;
+case 2:
+printf("enter the new last name:\n");
+scanf("%s",st[j].lastname);
+break;
+case 4:
+printf("enter the new cgpa:\n");
+scanf("%f",&st[j].cgpa);
+break;
+case 5:
+printf("enter the new course ids\n");
+scanf("%d%d%d%d%d", &st[j].courseid[0], &st[j].courseid[1], &st[j].courseid[2], &st[j].courseid[3], &st[j].courseid[4]);
+break;
+}
+printf("updation successful.\n");
+}
+}
+}
+//code
+int main()
+{
+int choice;
+while(choice!=8){
+printf("the task you want to perform\n");
+printf("1. add student details\n");
+printf("2. find the student by roll number\n");
+printf("3. find the student by first name\n");
+printf("4. find the student by course id\n");
+printf("5. find the total number of students\n");
+printf("6. delete the student details by roll number\n");
+printf("7. update the student details by roll number\n");
+printf("8. EXIT\n");
+printf("enter your choice\n");
+scanf("%d",&choice);
+switch(choice){
+case 1:
+add_student();
+break;
+case 2:
+find_rollnum();
+break;
+case 3:
+find_fname();
+break;
+case 4:
+find_course();
+break;
+case 5:
+total_s();
+break;
+case 6:
+delete_s();
+break;
+case 7:
+update_s();
+break;
+case 8:
+exit(0);
+break;
+}
+}
+return 0;
 }
